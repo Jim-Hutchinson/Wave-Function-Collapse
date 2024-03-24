@@ -1,6 +1,7 @@
 package waveFunctionCollapse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WaveFunction {
@@ -56,4 +57,41 @@ class Cell {
 				", collapsed=" + collapsed +
 				'}';
 	}
+	
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        // Sorting arrays to make it easier to find intersections
+    	// May not be needed to complete work
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        List<Integer> intersection = new ArrayList<>();
+        int i = 0, j = 0;
+        
+        // Loop through both arrays
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                // If the current element in nums1 is less than that in nums2,
+                // move to the next element in nums1.
+                i++;
+            } else if (nums1[i] > nums2[j]) {
+                // If the current element in nums1 is greater than that in nums2,
+                // move to the next element in nums2.
+                j++;
+            } else {
+                // If both elements are equal, it's part of the intersection.
+                // Add it to the result list and move to the next elements in both arrays.
+                intersection.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+        
+        // Convert the result list back to an array
+        int[] result = new int[intersection.size()];
+        for (i = 0; i < intersection.size(); i++) {
+            result[i] = intersection.get(i);
+        }
+        
+        return result;
+    }
 }
